@@ -1,10 +1,9 @@
 package com.example.propertyservice;
 
-import entities.User;
+import models.UserModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 
@@ -14,7 +13,7 @@ public class PropertyServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PropertyServiceApplication.class, args);
 
-		User pessoa1 = new User(null,"Kadu",465767677,"kadugabrielmdf@gmail.com", LocalDate.of(2002, 11, 10));
+		UserModel pessoa1 = new UserModel(null,"Kadu",465767677,"kadugabrielmdf@gmail.com", LocalDate.of(2002, 11, 10));
 
 
 		System.out.println(pessoa1);
