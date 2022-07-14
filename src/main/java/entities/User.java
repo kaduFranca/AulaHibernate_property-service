@@ -21,16 +21,12 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank
     @Column
     private String nome;
-    @NotBlank
     @Column
     private Integer cpf;
-    @NotBlank
     @Column
     private String email;
-    @NotBlank
     @Column
     private String dataNascimento;
 }

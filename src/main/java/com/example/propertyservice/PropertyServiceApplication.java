@@ -15,8 +15,6 @@ public class PropertyServiceApplication {
 
 		User pessoa1 = new User(null,"Kadu",465767677,"kadugabrielmdf@gmail.com","2002-11-10");
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projetinho-fellas");
-		EntityManager em = emf.createEntityManager();
 
 		System.out.println(pessoa1);
 	}
