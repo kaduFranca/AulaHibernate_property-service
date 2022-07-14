@@ -12,21 +12,22 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor
 @Entity
 @ToString
+@Table(name = "tb_suario")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+    @Column(nullable = false, unique = true, length = 130)
     private String nome;
-    @Column
+    @Column(nullable = false, unique = true, length = 11)
     private Integer cpf;
-    @Column
+    @Column(nullable = false, unique = true, length = 70)
     private String email;
-    @Column
-    private String dataNascimento;
+    @Column(nullable = false)
+    private LocalDate dataNascimento;
 }
