@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/AulaRepository
+    url: jdbc:postgresql://localhost:5432/PropertyService
     username: postgres
     password: postgres
   jpa:

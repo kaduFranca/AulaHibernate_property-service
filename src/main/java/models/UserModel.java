@@ -20,7 +20,7 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true, length = 130)
+    @Column(nullable = false, length = 130)
     private String nome;
     @Column(nullable = false, unique = true, length = 11)
     private Integer cpf;
