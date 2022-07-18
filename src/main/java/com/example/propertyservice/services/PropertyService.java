@@ -1,10 +1,8 @@
-package services;
+package com.example.propertyservice.services;
 
-import lombok.Data;
-import models.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.propertyservice.models.UserModel;
+import com.example.propertyservice.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import repositories.UserRepository;
 
 import javax.transaction.Transactional;
 
@@ -21,5 +19,13 @@ public class PropertyService { //Controller acionar o service e o service aciona
     @Transactional
     public UserModel save(UserModel userModel) {
         return userRepository.save(userModel);
+    }
+
+    public boolean existsByCpf(String cpf) {
+        return userRepository.existsByCpf(cpf);
+    }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 }
