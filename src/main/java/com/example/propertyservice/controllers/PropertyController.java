@@ -60,4 +60,19 @@ public class PropertyController {
         propertyService.delete(userModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable(value = "id") UUID id,
+                                             @RequestBody @Valid PropertyDto propertyDto){
+        Optional<UserModel> userModelOptional = propertyService.findById(id);
+        if (!userModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+        var userModel = userModelOptional.get();
+        userModel.setNome(propertyDto.getNome());
+        userModel.setCpf(propertyDto.getCpf());
+        userModel.setEmail(propertyDto.getEmail());
+        userModel.setDataNascimento(propertyDto.getDataNascimento());
+        return ResponseEntity.status(HttpStatus.OK).body(propertyService.save(userModel));
+    }
 }
