@@ -1,8 +1,6 @@
 package com.example.propertyservice.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
 
 
 import javax.persistence.*;

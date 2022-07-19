@@ -5,6 +5,9 @@ import com.example.propertyservice.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 //Controller aciona o Service e o Service aciona o Repository
 
@@ -16,6 +19,9 @@ public class PropertyService { //Controller acionar o service e o service aciona
     public PropertyService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+
+
     @Transactional
     public UserModel save(UserModel userModel) {
         return userRepository.save(userModel);
@@ -27,5 +33,17 @@ public class PropertyService { //Controller acionar o service e o service aciona
 
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    public List<UserModel> findAll() {
+        return userRepository.findAll();
+    }
+
+    public Optional<UserModel> findById(UUID id) {
+        return userRepository.findById(id);
+    }
+    @Transactional
+    public void delete(UserModel userModel) {
+        userRepository.delete(userModel);
     }
 }
