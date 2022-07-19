@@ -58,6 +58,6 @@ public class PropertyController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
         }
         propertyService.delete(userModelOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso")
+        return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
     }
 }
