@@ -34,11 +34,9 @@ public class PropertyService { //Controller acionar o service e o service aciona
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
-
     public List<UserModel> findAll() {
         return userRepository.findAll();
     }
-
     public Optional<UserModel> findById(UUID id) {
         return userRepository.findById(id);
     }

@@ -19,12 +19,12 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(nullable = false, length = 130)
+    @Column
     private String nome;
-    @Column(nullable = false, unique = true)
+    @Column
     private String cpf;
-    @Column(nullable = false, unique = true, length = 70)
+    @Column
     private String email;
-    @Column(nullable = false)
+    @Column
     private LocalDate dataNascimento;
 }

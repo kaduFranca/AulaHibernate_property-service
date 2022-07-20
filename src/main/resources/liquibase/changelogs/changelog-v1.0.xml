@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet id="0" author="kadu.franca">
+        <createTable tableName="tb_users">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="nome" type="TEXT">
+                <constraints  nullable="false"/>
+            </column>
+            <column name="cpf" type="TEXT(11)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="TEXT(70)">
+                <constraints  nullable="false" unique="true" />
+            </column>
+            <column name="dataNascimento" type="timestamp">
+                <constraints  nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
