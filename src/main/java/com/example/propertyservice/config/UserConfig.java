@@ -10,16 +10,16 @@ import java.time.LocalDate;
 
 @Configuration
 public class UserConfig {
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepository repository) {
-        return args -> {
-            UserModel christofer = new UserModel();
-            christofer.setNome("Boneco de teste");
-            christofer.setCpf("45346341");
-            christofer.setEmail("ghris@gmail.com");
-            christofer.setDataNascimento(LocalDate.of(2002, 11, 10));
-
-            repository.save(christofer);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserRepository repository) {
+//        return args -> {
+//            UserModel christofer = new UserModel();
+//            christofer.setNome("Boneco de teste");
+//            christofer.setCpf("45346341");
+//            christofer.setEmail("ghris@gmail.com");
+//            christofer.setDataNascimento(LocalDate.of(2002, 11, 10));
+//
+//            repository.save(christofer);
+//        };
+//    }
 }

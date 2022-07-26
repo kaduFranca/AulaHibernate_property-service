@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.hibernate.criterion.Projections.count;
+
 //Controller aciona o Service e o Service aciona o Repository
 
 @Service
-public class PropertyService { //Controller acionar o service e o service aciona o Repository
+public class PropertyService { //Controller aciona o service e o service aciona o Repository
 
     final UserRepository userRepository;
 
@@ -26,7 +28,6 @@ public class PropertyService { //Controller acionar o service e o service aciona
     public UserModel save(UserModel userModel) {
         return userRepository.save(userModel);
     }
-
     public boolean existsByCpf(String cpf) {
         return userRepository.existsByCpf(cpf);
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.propertyservice.services.PropertyService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -31,6 +32,17 @@ public class PropertyController {
         }
         if(propertyService.existsByEmail(propertyDto.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: Esse email ja está em uso.");
+        }
+
+        Long TamanhoCpf = propertyDto.getCpf().chars().filter(ch -> ch != ' ').count();
+        if (TamanhoCpf != 11) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: CPF inválido bocó");
+        }
+        LocalDate dataNacimento = propertyDto.getDataNascimento();
+        LocalDate dataAtual = LocalDate.now();
+
+        if(dataNacimento.isAfter(dataAtual) || dataNacimento.isEqual(dataAtual)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: Nasceu agr fdp?");
         }
 
         var userModel = new UserModel();
