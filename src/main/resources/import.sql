@@ -1,0 +1,1 @@
+INSERT INTO tb_usuario (nome, cpf, email, dataNascimento) VALUES ('kadu gabriel teste', 12345678912, 'kadugabrielmdt@gmail.com', TIMESTAMP WITH TIME ZONE '2020-07-13' )

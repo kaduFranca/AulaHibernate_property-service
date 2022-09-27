@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.propertyservice.services.PropertyService;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -27,64 +25,33 @@ public class PropertyController {
 
     @PostMapping
     public ResponseEntity<Object> saveUser(@RequestBody @Valid PropertyDto propertyDto){
-        if(propertyService.existsByCpf(propertyDto.getCpf())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: Esse CPF ja está em uso.");
-        }
-        if(propertyService.existsByEmail(propertyDto.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: Esse email ja está em uso.");
-        }
-
-        Long TamanhoCpf = propertyDto.getCpf().chars().filter(ch -> ch != ' ').count();
-        if (TamanhoCpf != 11) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: CPF inválido bocó");
-        }
-        LocalDate dataNacimento = propertyDto.getDataNascimento();
-        LocalDate dataAtual = LocalDate.now();
-
-        if(dataNacimento.isAfter(dataAtual) || dataNacimento.isEqual(dataAtual)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Aviso: Nasceu agr fdp?");
-        }
-
         var userModel = new UserModel();
         BeanUtils.copyProperties(propertyDto, userModel); //dto convertido para model
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.save(userModel));
     }
     @GetMapping
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        return ResponseEntity.status(HttpStatus.OK).body(propertyService.findAll());
+    public ResponseEntity<Object> getAllUsers() {
+        return propertyService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public ResponseEntity<Object> getOneUser(@PathVariable(value = "id") UUID id){
-        Optional<UserModel> userModelOptional = propertyService.findById(id);
-        if (!userModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
+        return propertyService.findById(id);
+    }
+
+    @GetMapping("nome/{nome}")
+    public ResponseEntity<Object> getOneUserByName(@PathVariable(value = "nome") String nome){
+       return propertyService.findByNome(nome);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") UUID id) {
-        Optional<UserModel> userModelOptional = propertyService.findById(id);
-        if (!userModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
-        }
-        propertyService.delete(userModelOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
+        return propertyService.delete(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateUser(@PathVariable(value = "id") UUID id,
                                              @RequestBody @Valid PropertyDto propertyDto){
-        Optional<UserModel> userModelOptional = propertyService.findById(id);
-        if (!userModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
-        }
-        var userModel = userModelOptional.get();
-        userModel.setNome(propertyDto.getNome());
-        userModel.setCpf(propertyDto.getCpf());
-        userModel.setEmail(propertyDto.getEmail());
-        userModel.setDataNascimento(propertyDto.getDataNascimento());
-        return ResponseEntity.status(HttpStatus.OK).body(propertyService.save(userModel));
+        return propertyService.update(id, propertyDto);
     }
 }
